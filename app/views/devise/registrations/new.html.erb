@@ -1,0 +1,146 @@
+
+
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+
+
+
+
+<h2>Sign up</h2>
+
+<%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name,multipart: true, :role => params[:role])) do |f| %>
+
+  <%= devise_error_messages! %>
+<%= hidden_field_tag :role, :value => params[:role] %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email,class: 'form-control', autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password,class: 'form-control', autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation,class: 'form-control', autocomplete: "off" %>
+  </div>
+
+<br/>
+
+<div class="field">
+    <%= f.label :Role %><br />
+    <%= f.select :role, options_for_select([ ["Select", ""],
+      ["Teacher","teacher"],["Student","student"]],class: 'form-control') %>
+  </div>
+
+<br/>
+
+
+
+<br/>
+
+
+
+<div class="teachers">
+<%= f.fields_for :teachers do |tf| %>
+<h3> Teacher Form </h3>
+  <%= tf.label :FirstName %>
+  <%= tf.text_field :first_name,class: 'form-control' %><br/>
+<%= tf.label :LastName %>
+  <%= tf.text_field :last_name,class: 'form-control' %><br/>
+<%= tf.label :MobileNumber %>
+  <%= tf.text_field :mobile_number,class: 'form-control' %><br/>
+<%= tf.label :DateOfBirth %>
+  <%#= tf.text_field :date_of_birth, :class => 'form-control datepicker' %>
+  <%= tf.date_select("date_of_birth", {:order => [:day, :month, :year], :end_year => Time.now.strftime('%Y').to_i - 70,  :start_year => Time.now.strftime('%Y').to_i, :use_month_numbers => true}) %><br/>
+
+  <%= tf.link_to_remove "Remove Teacher" %>
+<% end %>
+<p><%= f.link_to_add "Add a teacher", :teachers %></p>
+</div>
+
+
+<div class="students">
+<%= f.fields_for :students do |sf| %>
+<h3> Student Form </h3>
+  <%= sf.label :FirstName %>
+  <%= sf.text_field :first_name, :class => 'form-control' %><br/>
+<%= sf.label :LastName %>
+  <%= sf.text_field :last_name,class: 'form-control' %><br/>
+<%= sf.label :MobileNumber %>
+  <%= sf.text_field :mobile_number,class: 'form-control' %><br/>
+<%= sf.label :DateOfBirth %>
+<%= sf.date_select("date_of_birth", {:order => [:day, :month, :year], :end_year => Time.now.strftime('%Y').to_i - 70,  :start_year => Time.now.strftime('%Y').to_i, :use_month_numbers => true}) %>
+
+  <br/>
+  <%= sf.link_to_remove "Remove Student" %>
+<% end %>
+<p><%= f.link_to_add "Add a Student", :students %></p>
+</div>
+
+     
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>
+</div> 
+
+
+
+
+<script>
+$(document).ready(function()
+{
+
+$(".teachers").hide();
+$(".students").hide();
+});
+
+$("#user_role").change(function()
+{
+var val = $("#user_role").val();
+
+
+
+ if (val == 'teacher')
+{
+  $(".admins").hide();
+    $(".teachers").show();
+  $(".students").hide();
+
+}
+
+else if (val == 'student')
+{
+  $(".admins").hide();
+    $(".teachers").hide();
+  $(".students").show();
+
+}
+
+
+})
+
+
+
+
+
+
+
+
+</script>
+
+
+
+ 
+
+
+
