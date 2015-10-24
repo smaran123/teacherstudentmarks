@@ -1,0 +1,32 @@
+
+<br/>
+<br/>
+<br/>
+<hr/>
+<table class="table table-striped" style="background:white;">
+    <tr>
+      <th>Email</th>
+      <th>First Name</th>
+      <th>LastName</th>
+      <th>MobileNumber</th>
+      <th>Status</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+<% @teachers.each do |teacher| %>
+<tr>
+
+<td><%= teacher.email %></td>
+<% teacher.teachers.each do |f| %>
+<td><%= f.first_name %></td>
+<td><%= f.last_name %></td>
+<td><%= f.mobile_number %></td>
+
+<% end %>
+<td><%= %></td>
+      <td><%= teacher.role %></td>
+      <td><%= link_to "Delete","#" %> </td>
+      <td><%= link_to "Assign Class",assign_class_teachers_path %> </td>
+</tr>
+<% end %>
+</table>

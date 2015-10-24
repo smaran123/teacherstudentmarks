@@ -9,5 +9,6 @@ class User < ActiveRecord::Base
     accepts_nested_attributes_for :admins, :allow_destroy => true, :reject_if=>:all_blank
     accepts_nested_attributes_for :students, :allow_destroy => true, :reject_if=>:all_blank
     accepts_nested_attributes_for :teachers, :allow_destroy => true, :reject_if=>:all_blank
-
+    has_many :teacherclasses, :dependent => :destroy
+    
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021085909) do
+ActiveRecord::Schema.define(version: 20151023111856) do
 
   create_table "admins", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20151021085909) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "batches", force: :cascade do |t|
+    t.string   "batch_name", limit: 255
+    t.integer  "admin_id",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "batches", ["admin_id"], name: "index_batches_on_admin_id", using: :btree
+
   create_table "students", force: :cascade do |t|
     t.string   "first_name",    limit: 255
     t.string   "last_name",     limit: 255
@@ -31,6 +40,20 @@ ActiveRecord::Schema.define(version: 20151021085909) do
     t.integer  "user_id",       limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "subject_name", limit: 255
+    t.integer  "batch_id",     limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "subjects", ["batch_id"], name: "index_subjects_on_batch_id", using: :btree
+
+  create_table "teacherclasses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -66,4 +89,6 @@ ActiveRecord::Schema.define(version: 20151021085909) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "batches", "admins"
+  add_foreign_key "subjects", "batches"
 end

@@ -33,9 +33,11 @@
 <br/>
 
 <div class="field">
-    <%= f.label :Role %><br />
-    <%= f.select :role, options_for_select([ ["Select", ""],
+    <%#= f.label :Role %><br />
+    <%#= f.select :role, options_for_select([ ["Select", ""],
       ["Teacher","teacher"],["Student","student"]],class: 'form-control') %>
+      <%= f.radio_button :role, "teacher"%> Teacher
+      <%= f.radio_button :role, "student"%> Student
   </div>
 
 <br/>
@@ -104,30 +106,18 @@ $(".teachers").hide();
 $(".students").hide();
 });
 
-$("#user_role").change(function()
-{
-var val = $("#user_role").val();
+ $(function () {
+            $("input[name='user[role]").click(function () {
+                if ($("#user_role_teacher").is(":checked")) {
+                    $(".teachers").show();
+                      $(".students").hide();
+                } else if ($("#user_role_student").is(":checked")) {
+                    $(".students").show();
+                     $(".teachers").hide();
+                }
+            });
+        });
 
-
-
- if (val == 'teacher')
-{
-  $(".admins").hide();
-    $(".teachers").show();
-  $(".students").hide();
-
-}
-
-else if (val == 'student')
-{
-  $(".admins").hide();
-    $(".teachers").hide();
-  $(".students").show();
-
-}
-
-
-})
 
 
 

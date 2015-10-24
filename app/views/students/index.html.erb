@@ -1,0 +1,31 @@
+
+<br/>
+<br/>
+<br/>
+<hr/>
+<table class="table table-striped" style="background:white;">
+    <tr>
+      <th>Email</th>
+      <th>First Name</th>
+      <th>LastName</th>
+      <th>MobileNumber</th>
+      <th>Status</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+<% @students.each do |student| %>
+<tr>
+
+<td><%= student.email %></td>
+<% student.students.each do |f| %>
+<td><%= f.first_name %></td>
+<td><%= f.last_name %></td>
+<td><%= f.mobile_number %></td>
+
+<% end %>
+<td><%= %></td>
+      <td><%= student.role %></td>
+      <td><%= link_to "Delete", "#"%> </td>
+</tr>
+<% end %>
+</table>
