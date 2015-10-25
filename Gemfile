@@ -25,3 +25,5 @@ gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'devise', '~> 3.5', '>= 3.5.2'
 gem 'bootstrap-datepicker-rails', '~> 1.4.0'
 gem 'nested_form', '~> 0.3.2'
+# multiple subjects selction based on class
+gem 'bootstrap-multiselect-rails', '~> 0.9.9'

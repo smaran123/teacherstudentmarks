@@ -15,7 +15,10 @@ class TeachersController < ApplicationController
   end
 
   def assign_subject
-
+    @subjects = Subject.where("assign is null and batch_id = ?" , params[:batch_id])
   end
+
+
+
 
 end

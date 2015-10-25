@@ -13,9 +13,23 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require bootstrap-multiselect
 //= require bootstrap-datepicker
 //= require jquery_nested_form
 //= require turbolinks
 //= require_tree .
 
+
+function GetSubjects(sub){
+	$.ajax({
+		url: "/teachers/" + sub + "/assign_subject/",
+		method: "GET",
+		dataType: "script",
+		success: function(date){
+
+		}
+
+	})
+
+}
 
