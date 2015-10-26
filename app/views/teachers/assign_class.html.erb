@@ -4,16 +4,15 @@
 <br/>
 <hr/>
 <%= form_for @assign_class, :url => assign_teachercls_teacher_path(@admin,@user), :method => "POST" do |f| %>
-
+        
+                     <%= f.hidden_field :teacher_id, :value => @teacher.id %>  
 <%= f.label :class %>
-<%= select_tag :batch_id, options_for_select([["select",""]] + Batch.all.map{|batch| [batch.batch_name, batch.id]}, :class => "form-controll"), :onchange => "GetSubjects(this.value)" %>
+<%= f.select :batch_id, options_for_select([["select",""]] + Batch.all.map{|batch| [batch.batch_name, batch.id]}),{}, :class => "form-controll", :onchange => "GetSubjects(this.value)" %>
 
 <br/>
 
 <div class="column" id="subjects">
-<%#= f.label :subject %>
-<%#= select_tag :subject_id, options_for_select([["select",""]] + Subject.all.map{|subject| [subject.subject_name,subject.id]}) %>
-<%= select_tag :subject, options_for_select(["Select", ""]) %>
+<%= f.select :subject_id, options_for_select(["Select", ""]) %>
 </div>
 <%= f.submit "save" %>
 <% end %>

@@ -16,17 +16,17 @@
 <% @teachers.each do |teacher| %>
 <tr>
 
-<td><%= teacher.email %></td>
-<% teacher.teachers.each do |f| %>
-<td><%= f.first_name %></td>
-<td><%= f.last_name %></td>
-<td><%= f.mobile_number %></td>
+<td><%= teacher.user.email %></td>
 
-<% end %>
+<td><%= teacher.first_name %></td>
+<td><%= teacher.last_name %></td>
+<td><%= teacher.mobile_number %></td>
+
+
 <td><%= %></td>
-      <td><%= teacher.role %></td>
+      <td><%= teacher.user.role %></td>
       <td><%= link_to "Delete","#" %> </td>
-      <td><%= link_to "Assign Class",assign_class_teacher_path(@user,teacher) %> </td>
+      <td><%= link_to "Assign Class",assign_class_teacher_path(teacher) %> </td>
 </tr>
 <% end %>
 </table>

@@ -2,28 +2,36 @@ class TeachersController < ApplicationController
   layout :get_admin_layout
 
   def index
-    @teachers = User.where(:role => "teacher").all
-    @user = User.where(:role => "admin").last
+    @teachers = Teacher.all
+  #  @user = User.where(:role => "admin").last
   end
 
   def assign_class
    @admin = User.where(:role => "admin").last
-   @teacher = User.where(:role => "teacher").last
-  #  @teachers = User.where("user_id = '#{current_user.id}' AND role = 'teacher'").all
-   puts"#####"
+@teacher = Teacher.find(params[:id])
+    puts"#####"
+    puts @teacher.inspect
       puts @admin.inspect
-   puts"#####"
+       puts"#####"
    @assign_class = Teacherclass.new
  end
 
  def assign_teachercls
+
+ puts"#####"
+  puts"#####"
+puts @teacher.inspect
+ puts"#####"
+  puts"#####"
+
   if params[:subject_ids]
     params[:subject_ids].compact.each do |ami|
       @batch = Teacherclass.find_by_batch_id_and_subject_id(params[:batch_id],ami)
       if !@batch.present? and ami.present?
-        @subject = Teacherclass.new(:batch_id => params[:batch_id],:subject_id => ami,:user_id => params[:user_id])
+        @subject = Teacherclass.new(:batch_id => params[:batch_id],:subject_id => ami,:teacher_id => params[:teacher_id])
         @subject.save
- @subject.subject.update_attribute(:assign, "Assigned")      end
+ @subject.subject.update_attribute(:assign, "Assigned") 
+      end
     end
   end
   flash[:notice] = "Successfully assign Subject to Teacher"

@@ -7,7 +7,7 @@
   <tr>
     <th>Batch(Class) Name</th>
     <th>Subjects</th>
-     <th>Subjects</th>
+     <th>Actions</th>
   </tr>
   <%@batches.each do |b|%>
     <tr>
@@ -15,12 +15,25 @@
         <%=b.batch_name%>
       </td>
       <td>
-        <% b.subjects.each do |s| %>
-          <%= s.subject_name %> &nbsp;
-        <%end%>
+       <%= link_to "Display Subjects", admin_batch_display_subjects_path(b),:remote => true, :class => "btn btn-primary glyphicon glyphicon-list" %>
+      </td>
+         <td>
+               <%= link_to "", "#", :class => "btn btn-warning glyphicon glyphicon-edit" %>  <%= link_to "","#", :class => "btn btn-danger glyphicon glyphicon-remove-circle" %>
+      
       </td>
     </tr>
   <%end%>
 </table>
-<%= link_to "New",new_admin_batch_path %>
-<h1><%= link_to "Back", admin_dashboards_path %></h1>
+
+
+<div class="subjects">
+
+
+
+
+</div>
+
+
+
+<%#= link_to "New",new_admin_batch_path %>
+<h1><%= link_to "Back to Dashboard", admin_dashboards_path, :class => "btn btn-success" %></h1>
