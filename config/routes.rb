@@ -11,11 +11,11 @@ Rails.application.routes.draw do
   end
 
   resources :teachers do
-   collection do 
+     get :assign_subject 
+   member do 
     get :assign_class
     post :assign_teachercls
-    get :assign_subject 
-   end 
+    end 
   end
   resources :students
 end

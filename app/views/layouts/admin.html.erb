@@ -2,43 +2,40 @@
 <html>
   <head>
     <title> Admin</title>
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <%= stylesheet_link_tag "/assets/bootstrap_files/bootstrap","screen","application","simple-overlay", "jquery.notifyBar","/assets/bootstrap_files/bootstrap-responsive","jquery.simplyscroll" %>
+       <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-    
-    <style>
-      body { padding-top: 60px; }
-    </style>
+      
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-      <% if current_user %>
-    <ul class="nav" style="margin: -8px 10px 0 0; ">
-                <li class="<%=  params[:controller] == "dashboards" && params[:action] == "index" ? "active" : ""%>"><%= link_to "Dashboard", admin_dashboards_path, :class => "menubanneritem button" %></li>
-                               
-                <li class="<%=  params[:controller] == "batches" && params[:action] == "new" || params[:action] == 'create' ? "active" : ""%>"><%= link_to "Create Batch", new_admin_batch_path, :class => "menubanneritem button" %></li>
+
+<header class="navbar navbar-default" role="navigation">
+    <div class="navbar-inner">
+      <div class="container">
+        <div id="logo" class="navbar-brand"><%= link_to "Dashboard", admin_dashboards_path %>    
+ </div>
+        <nav class="collapse navbar-collapse navbar-ex1-collapse">
+
+       <% if current_user %>
+            <ul class="nav navbar-nav">
+             
+
+              <li class="<%=  params[:controller] == "batches" && params[:action] == "new" || params[:action] == 'create' ? "active" : ""%>"><%= link_to "Create Batch", new_admin_batch_path, :class => "menubanneritem button" %></li>
               </ul>
-      
-        
-            <ul class="nav pull-right">
-                        <li>   <%= link_to "Sign out", destroy_user_session_path,:method => 'delete', :class => "menubanneritem button" %>
-             </li>
-            </ul>
-     <%end%>
-        </div>
+<ul class="nav pull-right">
+                <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>              </ul>
+          <% end -%>
+            
+        </nav>
       </div>
     </div>
+  </header>
     
       <div class="container">
         <div class="row-fluid">
           <%= yield %>
         </div>
       </div>
- 
-    
-   
+      
     
   </body>
