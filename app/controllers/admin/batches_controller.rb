@@ -28,6 +28,20 @@ class Admin::BatchesController < ApplicationController
   end
 end
 
+
+def edit
+    @batch = Batch.find(params[:id])
+end
+
+def update
+  @batch = Batch.find(params[:id])
+  if @batch.update(batch_params)
+    redirect_to admin_batches_path
+  else
+    render :edit
+  end
+end
+
 def display_subjects
   
   @batch = Batch.find(params[:batch_id])
@@ -39,7 +53,12 @@ def display_subjects
   end
 end
 
-
+def destroy
+  @batch = Batch.find(params[:id])
+  if @batch.destroy
+    redirect_to admin_batches_path
+  end
+end  
 
 private
 

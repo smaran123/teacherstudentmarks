@@ -1,16 +1,13 @@
 
-<br/>
-<br/>
-<br/>
+
 <hr/>
-<table class="table table-striped" style="background:white;">
+<table class="table table-striped">
     <tr>
       <th>Email</th>
       <th>First Name</th>
       <th>LastName</th>
       <th>MobileNumber</th>
-      <th>Status</th>
-      <th>Role</th>
+           <th>Role</th>
       <th>Actions</th>
     </tr>
 <% @teachers.each do |teacher| %>
@@ -21,12 +18,8 @@
 <td><%= teacher.first_name %></td>
 <td><%= teacher.last_name %></td>
 <td><%= teacher.mobile_number %></td>
-
-
-<td><%= %></td>
       <td><%= teacher.user.role %></td>
-      <td><%= link_to "Delete","#" %> </td>
-      <td><%= link_to "Assign Class",assign_class_teacher_path(teacher) %> </td>
+          <td><%= link_to "Assign Class",assign_class_teacher_path(teacher), :class => "btn btn-info" %> </td>
 </tr>
 <% end %>
 </table>

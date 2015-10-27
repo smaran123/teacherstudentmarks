@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026101011) do
+ActiveRecord::Schema.define(version: 20151027104928) do
 
   create_table "admins", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 20151026101011) do
   end
 
   add_index "batches", ["admin_id"], name: "index_batches_on_admin_id", using: :btree
+
+  create_table "markreports", force: :cascade do |t|
+    t.integer  "student_id",  limit: 4
+    t.integer  "teacher_id",  limit: 4
+    t.integer  "subject_id",  limit: 4
+    t.integer  "max_marks",   limit: 4
+    t.float    "total_marks", limit: 24
+    t.string   "result",      limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "students", force: :cascade do |t|
     t.string   "first_name",    limit: 255

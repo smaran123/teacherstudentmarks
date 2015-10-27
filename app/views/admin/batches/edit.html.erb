@@ -1,0 +1,5 @@
+<%= nested_form_for(@batch, :url => admin_batch_path(:id =>  @batch.id),:html => {:multipart => true},:method => "PUT")  do |f| %>
+<%= render :partial => "form", :locals => {:f => f} %>
+
+<% end %>
+

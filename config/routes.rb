@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'students/index'
-
   devise_for :users
   root 'home#index'
 
@@ -20,4 +18,10 @@ Rails.application.routes.draw do
     end 
   end
   resources :students
+  resources :subjects do 
+  member do
+
+    get :teacherclass
+  end
+  end
 end

@@ -2,12 +2,7 @@
 
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
-
-
-
-
 <h2>Sign up</h2>
-
 <%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name,multipart: true, :role => params[:role])) do |f| %>
 
   <%= devise_error_messages! %>
@@ -33,10 +28,7 @@
 <br/>
 
 <div class="field">
-    <%#= f.label :Role %><br />
-    <%#= f.select :role, options_for_select([ ["Select", ""],
-      ["Teacher","teacher"],["Student","student"]],class: 'form-control') %>
-      <%= f.radio_button :role, "teacher"%> Teacher
+          <%= f.radio_button :role, "teacher"%> Teacher
       <%= f.radio_button :role, "student"%> Student
   </div>
 
@@ -51,13 +43,13 @@
 <div class="teachers">
 <%= f.fields_for :teachers do |tf| %>
 <h3> Teacher Form </h3>
-  <%= tf.label :FirstName %>
+  <%= tf.label :FirstName, "FirstName" %>
   <%= tf.text_field :first_name,class: 'form-control' %><br/>
-<%= tf.label :LastName %>
+<%= tf.label :LastName, "LastName" %>
   <%= tf.text_field :last_name,class: 'form-control' %><br/>
-<%= tf.label :MobileNumber %>
+<%= tf.label :MobileNumber, "MobileNumber" %>
   <%= tf.text_field :mobile_number,class: 'form-control' %><br/>
-<%= tf.label :DateOfBirth %>
+<%= tf.label :DateOfBirth,"DateOfBirth" %>
   <%#= tf.text_field :date_of_birth, :class => 'form-control datepicker' %>
   <%= tf.date_select("date_of_birth", {:order => [:day, :month, :year], :end_year => Time.now.strftime('%Y').to_i - 70,  :start_year => Time.now.strftime('%Y').to_i, :use_month_numbers => true}) %><br/>
 
@@ -70,13 +62,13 @@
 <div class="students">
 <%= f.fields_for :students do |sf| %>
 <h3> Student Form </h3>
-  <%= sf.label :FirstName %>
+  <%= sf.label :FirstName,"FirstName" %>
   <%= sf.text_field :first_name, :class => 'form-control' %><br/>
-<%= sf.label :LastName %>
+<%= sf.label :LastName,"LastName" %>
   <%= sf.text_field :last_name,class: 'form-control' %><br/>
-<%= sf.label :MobileNumber %>
+<%= sf.label :MobileNumber,"MobileNumber" %>
   <%= sf.text_field :mobile_number,class: 'form-control' %><br/>
-<%= sf.label :DateOfBirth %>
+<%= sf.label :DateOfBirth,"DateOfBirth" %>
 <%= sf.date_select("date_of_birth", {:order => [:day, :month, :year], :end_year => Time.now.strftime('%Y').to_i - 70,  :start_year => Time.now.strftime('%Y').to_i, :use_month_numbers => true}) %>
 
   <br/>
@@ -87,10 +79,10 @@
 
      
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Signup", :class => "btn btn-primary" %>
   </div>
 <% end %>
-
+<br/>
 <%= render "devise/shared/links" %>
 </div>
 </div> 
@@ -117,15 +109,6 @@ $(".students").hide();
                 }
             });
         });
-
-
-
-
-
-
-
-
-
 </script>
 
 

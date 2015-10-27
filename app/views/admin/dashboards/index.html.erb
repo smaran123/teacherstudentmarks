@@ -1,4 +1,5 @@
-<h1><%= link_to "batch", admin_batches_path %></h1>
-Total No.of Students : <%= link_to @students.count,students_path %>
+<div class="page-header">
+  <h1>Total No.of Students : <%= link_to @students.count,students_path %>
 Total No.of Teachers : <%= link_to @teachers.count, teachers_path %>
-Total No.of Classes :<%= link_to @batches.count,admin_batches_path %>
+Total No.of Classes :<%= link_to @batches.count,admin_batches_path %></h1>
+</div>

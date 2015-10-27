@@ -5,7 +5,7 @@
 <hr/>
 <%= form_for @assign_class, :url => assign_teachercls_teacher_path(@admin,@user), :method => "POST" do |f| %>
         
-                     <%= f.hidden_field :teacher_id, :value => @teacher.id %>  
+                     <%= f.hidden_field :teacher_id, :value => params[:id] %>  
 <%= f.label :class %>
 <%= f.select :batch_id, options_for_select([["select",""]] + Batch.all.map{|batch| [batch.batch_name, batch.id]}),{}, :class => "form-controll", :onchange => "GetSubjects(this.value)" %>
 

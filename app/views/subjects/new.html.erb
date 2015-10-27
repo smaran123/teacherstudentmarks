@@ -1,0 +1,29 @@
+<%= form_for @markreport, :url => subjects_path, :method => "POST" do |f| %>
+<%#= f.hidden_field :teacher_id, :value => params[:id] %>
+<div class="form-field">
+<h5> SubjectName
+<%= f.select :subject_id, options_for_select([["Select", ""]] + Subject.all.map{ |ic| [ic.subject_name, ic.id]}), {}  %></h5>
+</div>
+<br/>
+<h5> TeacherName
+<%= f.select :teacher_id, options_for_select([["Select", ""]] + Teacher.all.map{|i| [i.first_name,i.id]}),{} %> 
+</h5>
+<h5> StudentName
+<%= f.select :student_id, options_for_select([["Select", ""]] + Student.all.map{|i| [i.first_name,i.id]}),{} %>
+</h5>
+
+
+
+<div class="form-field">
+<%= f.label :MaximumMarks,"MaximumMarks" %>
+<%= f.text_field :max_marks %>
+</div><br/>
+
+<div class="form-field">
+<%= f.label :TotalMarks, "TotalMarks" %>
+<%= f.text_field :total_marks %>
+</div><br/>
+<div class="form-action">
+<%= f.submit :class => "btn btn-info" %> 
+</div><br/>
+<% end %>
