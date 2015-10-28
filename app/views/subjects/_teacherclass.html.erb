@@ -1,0 +1,25 @@
+<%= form_for @markreport, :url => teacherclass_marks_subjects_path do |f| %>
+
+<div class="form-fields">
+<%= f.label :TeacherName %>
+<%= f.select :teacher_id, options_for_select([["Select",""]] +Teacher.all.map{ |teacher| [teacher.first_name,teacher.id]})%>
+</div>
+<div class="form-fields">
+<%= f.label :Student %>
+<%= f.select :student_id, options_for_select([["Select",""]] +Student.all.map{ |student| [student.first_name,student.id]})%>
+</div>
+
+
+<div class="form-fields">
+<%= f.label :maximummarks %>
+<%= f.text_field :max_marks %>
+</div>
+
+<div class="form-fields">
+<%= f.label :TotalMarks %>
+<%= f.text_field :total_marks %>
+</div>
+<div class="form-action">
+<%= f.submit %>
+</div>
+<% end %>

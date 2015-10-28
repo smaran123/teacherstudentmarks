@@ -1,27 +1,40 @@
 class SubjectsController < ApplicationController
 
-  def index
-  #  @markreport = Markreport.all
-  #  @teacher = Teacher.find(params[:id])
-     @subjects = Subject.all
-  end
-  
-  def new
-    @markreport = Markreport.new
-  end
+def index
+@markreports = Markreport.all
+  @teacherclass = Teacherclass.where(teacher_id=current_user.id).all
  
- def create
-    @markreport = Markreport.new(markreport_params)
-    if @markreport.save
-      redirect_to subjects_path
-    else
-      render :new
+end
+  
+
+ #  def new
+ #    @markreport = Markreport.new
+ #  end
+ 
+ # def create
+ #    @markreport = Markreport.new(markreport_params)
+ #    if @markreport.save
+ #      redirect_to subjects_path
+ #    else
+ #      render :new
+ #    end
+ #  end
+
+  def teacherclass
+    @markreport = Markreport.new
+    respond_to do |format|
+      format.js
     end
   end
 
-  def teacherclass
-
-  end
+def teacherclass_marks
+  @markreport = Markreport.new(markreport_params)
+  if @markreport.save
+    redirect_to subjects_path
+  else
+    render :action => teacherclass
+end
+end
 
 private
 

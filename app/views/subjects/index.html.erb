@@ -1,21 +1,36 @@
 
 
-<%= link_to "NewMarkReport",new_subject_path %>
-
-
-
-<!-- <table class="table table-stripped">
+<%#= link_to "NewMarkReport",new_subject_path %>
+<table class="table table-stripped">
 <tr> 
 <th> Subject Name </th>
+<th> Assign Marks </th>
 
 </tr>
-
-<#% @subjects.each do |subject| %#>
+<% @teacherclass.each do |ts | %>
+<tr>
+<td><%= ts.subject.subject_name %></td>
+<td> <%= link_to "assign marks", teacherclass_subject_path(ts), :remote => true %></td>
 
 <tr>
-<td><%#= subject.subject_name %></td>
-<td><%#= link_to "teachersubjects",teacherclass_subject_path(subject) %></td>
-</tr>
-<#% end %#>
+<% end %>
 
-</table> -->
+</table> 
+
+
+<div class="marks">
+
+</div>
+
+<div><% @markreports.each do |markreport| %>
+<%= markreport.teacher.first_name if markreport.teacher.present?%>
+Subject:<%= markreport.subject.subject_name if markreport.subject.present?%>
+TotalMarks<%= markreport.total_marks %>
+Maximum Marks<%= markreport.max_marks %>
+<br/>
+  <% end %>
+</div> 
+
+
+
+

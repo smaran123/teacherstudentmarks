@@ -2,7 +2,7 @@
 <%#= f.hidden_field :teacher_id, :value => params[:id] %>
 <div class="form-field">
 <h5> SubjectName
-<%= f.select :subject_id, options_for_select([["Select", ""]] + Subject.all.map{ |ic| [ic.subject_name, ic.id]}), {}  %></h5>
+<%= f.select :subject_id, options_for_select([["Select", ""]] + Teacherclass.where(teacher_id=current_user.id).all.map{|i| [i.subject.subject_name,i.subject.id]}), {}  %></h5>
 </div>
 <br/>
 <h5> TeacherName
