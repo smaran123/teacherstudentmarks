@@ -2,8 +2,9 @@ class SubjectsController < ApplicationController
 
 def index
 @markreports = Markreport.all
-  @teacherclass = Teacherclass.where(teacher_id=current_user.id).all
- 
+@teacherclass = Teacherclass.where(teacher_id=current_user.id).all
+@markreport = Markreport.new
+
 end
   
 
@@ -22,9 +23,10 @@ end
 
   def teacherclass
     @markreport = Markreport.new
-    respond_to do |format|
-      format.js
-    end
+    @subject = Subject.find_by_id(params[:id])
+     # respond_to do |format|
+     #   format.js
+     # end
   end
 
 def teacherclass_marks

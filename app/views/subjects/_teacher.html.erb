@@ -1,0 +1,32 @@
+<%= form_for @markreport, :url => teacherclass_marks_subjects_path do |f| %>
+<div class="input-group input-group-lg">
+         TeacherName:
+          <%=  f.select :teacher_id, options_for_select([["Select",""]] +Teacher.all.map{ |teacher| [teacher.first_name,teacher.id]}) %>
+          </div>
+          <br />
+
+<div class="input-group input-group-lg">
+
+     StudentName:
+          <%= f.select :student_id, options_for_select([["Select",""]] +Student.all.map{ |student| [student.first_name,student.id]}) %>
+          </div>
+          <br />
+
+
+<div class="input-group input-group-lg">
+     Maximum Marks:
+          <%= f.number_field :max_marks %>
+          </div>
+          <br />
+
+<div class="input-group input-group-lg">
+     Total Marks:
+          <%= f.number_field :total_marks %>
+          </div>
+          <br />
+
+
+<div class="input-group input-group-lg">
+<%= f.submit "SaveMarks", class: "btn btn-primary" %>
+</div>
+<% end %>

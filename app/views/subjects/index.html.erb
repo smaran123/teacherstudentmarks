@@ -10,7 +10,17 @@
 <% @teacherclass.each do |ts | %>
 <tr>
 <td><%= ts.subject.subject_name %></td>
-<td> <%= link_to "assign marks", teacherclass_subject_path(ts), :remote => true %></td>
+<td> <%#= link_to "assign marks", teacherclass_subject_path(ts) %>
+
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#marks" data-id="<%= ts.id %>">
+assign</button>
+ 
+
+
+  <%#= link_to " Details",teacherclass_subject_path(:id => ts.id), :class => "btn btn-info btn-sm fixed-width" %>
+
+       
+</td>
 
 <tr>
 <% end %>
@@ -18,19 +28,23 @@
 </table> 
 
 
-<div class="marks">
-
+<div class="modal fade" id="marks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+   
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Subject Marks</h4>
+      </div>
+      <div class="modal-body">
+     <%= hidden_field_tag :id, :value => params[:id] %>
+           <%= render :partial => "/subjects/teacher" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
 </div>
-
-<div><% @markreports.each do |markreport| %>
-<%= markreport.teacher.first_name if markreport.teacher.present?%>
-Subject:<%= markreport.subject.subject_name if markreport.subject.present?%>
-TotalMarks<%= markreport.total_marks %>
-Maximum Marks<%= markreport.max_marks %>
-<br/>
-  <% end %>
-</div> 
-
-
-
 
