@@ -14,10 +14,31 @@
 
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#marks" data-id="<%= ts.id %>">
 assign</button>
- 
 
 
-  <%#= link_to " Details",teacherclass_subject_path(:id => ts.id), :class => "btn btn-info btn-sm fixed-width" %>
+  <!-- Button trigger modal -->
+  <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#ts-<%= ts.id %>-subjects">
+    View subjects
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="ts-<%= ts.id %>-subjects" tabindex="-1" role="dialog" aria-labelledby="ts-<%= ts.id %>-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="ts-<%= ts.id %>-label">Notes</h4>
+        </div>
+        <div class="modal-body">
+         Subject Name: <%= ts.subject.subject_name %>
+          <%= render :partial => "/subjects/new" %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
        
 </td>
@@ -28,6 +49,31 @@ assign</button>
 </table> 
 
 
+<div class="modal" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+   
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">fd Marks</h4>
+      </div>
+      <div id="marks_<%#= ts.id %>"class="modal-body" >
+           <%= render :partial => "/subjects/new" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 <div class="modal fade" id="marks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -36,8 +82,7 @@ assign</button>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Subject Marks</h4>
       </div>
-      <div class="modal-body">
-     <%= hidden_field_tag :id, :value => params[:id] %>
+      <div id="marks_<%#= ts.id %>"class="modal-body" >
            <%= render :partial => "/subjects/teacher" %>
       </div>
       <div class="modal-footer">
