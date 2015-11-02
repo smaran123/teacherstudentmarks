@@ -10,38 +10,8 @@
 <% @teacherclass.each do |ts | %>
 <tr>
 <td><%= ts.subject.subject_name %></td>
-<td> <%#= link_to "assign marks", teacherclass_subject_path(ts) %>
 
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#marks" data-id="<%= ts.id %>">
-assign</button>
-
-
-  <!-- Button trigger modal -->
-  <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#ts-<%= ts.id %>-subjects">
-    View subjects
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="ts-<%= ts.id %>-subjects" tabindex="-1" role="dialog" aria-labelledby="ts-<%= ts.id %>-label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="ts-<%= ts.id %>-label">Notes</h4>
-        </div>
-        <div class="modal-body">
-         Subject Name: <%= ts.subject.subject_name %>
-          <%= render :partial => "/subjects/new" %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-       
-</td>
+ <td><%= link_to 'Assign', '#assignsubject',:onclick => "javascript:subject_form('#{ts.subject.id}')",:class=>"btn btn-xs btn-primary", "data-toggle" => "modal" %></td>
 
 <tr>
 <% end %>
@@ -49,18 +19,19 @@ assign</button>
 </table> 
 
 
-<div class="modal" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
+
+
+<div class="modal fade" id="assignsubject">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-   
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">fd Marks</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Assign</h4>
       </div>
-      <div id="marks_<%#= ts.id %>"class="modal-body" >
-           <%= render :partial => "/subjects/new" %>
-      </div>
-      <div class="modal-footer">
+      <div class="modal-body" id="assign_subject">
+
+       </div>
+       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
        
       </div>
@@ -68,28 +39,10 @@ assign</button>
   </div>
 </div>
 
+<script>
 
-
-
-
-
-
-<div class="modal fade" id="marks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-   
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Subject Marks</h4>
-      </div>
-      <div id="marks_<%#= ts.id %>"class="modal-body" >
-           <%= render :partial => "/subjects/teacher" %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-       
-      </div>
-    </div>
-  </div>
-</div>
-
+  function subject_form(ts) {
+    
+    $.get("/subjects/" + ts + "/teacherclass" );
+  }
+</script>

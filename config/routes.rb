@@ -21,10 +21,8 @@ resources :students
 resources :subjects do 
   member do
     get :teacherclass
-  end
-collection do
       post :teacherclass_marks
-end
+  end
 
 end
 

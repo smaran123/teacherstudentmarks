@@ -1,0 +1,6 @@
+<% if @markreport.errors.any? %>
+$("#assign_subject").html('<%= escape_javascript render :partial => "teacherclass" %>');
+<% else %>
+window.location.reload();
+
+<% end %>
