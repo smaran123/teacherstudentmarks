@@ -1,4 +1,4 @@
 class Student < ActiveRecord::Base
   belongs_to :user
-  has_many :markreports, :dependent =>:destroy
+  has_one :markreport, :dependent =>:destroy
 end

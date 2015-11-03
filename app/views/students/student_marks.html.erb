@@ -1,0 +1,17 @@
+<table class="table table-stripped">
+<tr>
+<th>TotalMarks</th>
+<th>Maximum Marks </th>
+<th>Student Name </th>
+<th>Subject Name </th>
+
+</tr>
+<% @markreports.each do |mark| %>
+<tr>
+<td><%= mark.total_marks %></td>
+<td><%= mark.max_marks%></td>
+<td><%= mark.student.first_name if mark.student.present?%></td>
+<td> <%= mark.subject.subject_name if mark.subject.present? %></td>
+</tr>
+<% end %>
+</table>

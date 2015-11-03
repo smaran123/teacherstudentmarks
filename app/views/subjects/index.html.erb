@@ -1,26 +1,15 @@
-
-
-<%#= link_to "NewMarkReport",new_subject_path %>
 <table class="table table-stripped">
 <tr> 
 <th> Subject Name </th>
 <th> Assign Marks </th>
-
 </tr>
 <% @teacherclass.each do |ts | %>
 <tr>
 <td><%= ts.subject.subject_name %></td>
-
  <td><%= link_to 'Assign', '#assignsubject',:onclick => "javascript:subject_form('#{ts.subject.id}')",:class=>"btn btn-xs btn-primary", "data-toggle" => "modal" %></td>
-
 <tr>
 <% end %>
-
 </table> 
-
-
-
-
 <div class="modal fade" id="assignsubject">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -29,20 +18,17 @@
         <h4 class="modal-title" id="myModalLabel">Assign</h4>
       </div>
       <div class="modal-body" id="assign_subject">
-
        </div>
        <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-       
+  
       </div>
     </div>
   </div>
 </div>
 
 <script>
-
   function subject_form(ts) {
-    
-    $.get("/subjects/" + ts + "/teacherclass" );
+      $.get("/subjects/" + ts + "/teacherclass" );
   }
 </script>

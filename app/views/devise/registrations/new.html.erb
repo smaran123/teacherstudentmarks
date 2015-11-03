@@ -1,17 +1,13 @@
-
-
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
 <h2>Sign up</h2>
-<%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name,multipart: true, :role => params[:role])) do |f| %>
-
+<%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name,multipart: true)) do |f| %>
   <%= devise_error_messages! %>
-<%= hidden_field_tag :role, :value => params[:role] %>
+<%#= hidden_field_tag :role, :value => params[:role] %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email,class: 'form-control', autofocus: true %>
   </div>
-
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
@@ -31,17 +27,10 @@
           <%= f.radio_button :role, "teacher"%> Teacher
       <%= f.radio_button :role, "student"%> Student
   </div>
-
 <br/>
-
-
-
 <br/>
-
-
-
 <div class="teachers">
-<%= f.fields_for :teachers do |tf| %>
+<%= f.fields_for :teacher do |tf| %>
 <h3> Teacher Form </h3>
   <%= tf.label :FirstName, "FirstName" %>
   <%= tf.text_field :first_name,class: 'form-control' %><br/>
@@ -55,12 +44,12 @@
 
   <%= tf.link_to_remove "Remove Teacher" %>
 <% end %>
-<p><%= f.link_to_add "Add a teacher", :teachers %></p>
+<p><%= f.link_to_add "Add a teacher", :teacher %></p>
 </div>
 
 
 <div class="students">
-<%= f.fields_for :students do |sf| %>
+<%= f.fields_for :student do |sf| %>
 <h3> Student Form </h3>
   <%= sf.label :FirstName,"FirstName" %>
   <%= sf.text_field :first_name, :class => 'form-control' %><br/>
@@ -74,7 +63,7 @@
   <br/>
   <%= sf.link_to_remove "Remove Student" %>
 <% end %>
-<p><%= f.link_to_add "Add a Student", :students %></p>
+<p><%= f.link_to_add "Add a Student", :student %></p>
 </div>
 
      
@@ -87,17 +76,12 @@
 </div>
 </div> 
 
-
-
-
 <script>
 $(document).ready(function()
 {
-
 $(".teachers").hide();
 $(".students").hide();
 });
-
  $(function () {
             $("input[name='user[role]").click(function () {
                 if ($("#user_role_teacher").is(":checked")) {
@@ -110,10 +94,3 @@ $(".students").hide();
             });
         });
 </script>
-
-
-
- 
-
-
-

@@ -12,6 +12,7 @@
   <% end %>
 
  Subject Name: <%= @subject.subject_name %>
+ <%= f.hidden_field :subject_id,:value => @subject.id %>
 <div class="form-fields">
 <%= f.label :TeacherName %>
 <%= f.select :teacher_id, options_for_select([["Select",""]] +Teacher.all.map{ |teacher| [teacher.first_name,teacher.id]})%>

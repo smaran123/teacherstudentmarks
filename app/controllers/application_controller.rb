@@ -27,11 +27,15 @@ end
 
 
   def get_admin_layout
-    if current_user
+    if current_user.role == "admin"
       return "admin"
     end
   end
 
-
+def get_students_layout
+  if current_user.role == "student"
+    return "student"
+  end
+end
 
 end

@@ -29,15 +29,13 @@ class SubjectsController < ApplicationController
     end
   end
 
-  def teacherclass_marks
+def teacherclass_marks
    @subject = Subject.find_by_id(params[:id])
-   @markreport = Markreport.create(markreport_params)
-  
-    respond_to do |format|
+   @markreport = Markreport.create(markreport_params.merge(:subject => @subject))
+      respond_to do |format|
       format.js
     end
- 
-end
+  end
 
 private
 

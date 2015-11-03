@@ -17,7 +17,9 @@ Rails.application.routes.draw do
     post :assign_teachercls
   end 
 end
-resources :students
+resources :students do 
+ get :student_marks 
+end
 resources :subjects do 
   member do
     get :teacherclass
