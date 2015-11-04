@@ -8,18 +8,6 @@ class SubjectsController < ApplicationController
   end
   
 
-  def new
-    @markreport = Markreport.new
-  end
-
-  def create
-    @markreport = Markreport.new(markreport_params)
-    if @markreport.save
-      redirect_to subjects_path
-    else
-      render :new
-    end
-  end
 
   def teacherclass
     @markreport = Markreport.new
